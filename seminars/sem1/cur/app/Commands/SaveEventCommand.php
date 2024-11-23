@@ -18,7 +18,6 @@ class SaveEventCommand extends Command
     {
 
         $this->app = $app;
-
     }
     public function run(array $options  = []): void
 
@@ -31,7 +30,6 @@ class SaveEventCommand extends Command
             $this->showHelp();
 
             return;
-
         }
 
         $cronValues = $this->getCronValues($options['cron']);
@@ -41,7 +39,6 @@ class SaveEventCommand extends Command
             $this->showHelp();
 
             return;
-
         }
 
         $params = [
@@ -65,7 +62,6 @@ class SaveEventCommand extends Command
         ];
 
         $this->saveEvent($params);
-
     }
 
     private function getGetoptOptionValues(): array
@@ -91,10 +87,9 @@ class SaveEventCommand extends Command
         ];
 
         return getopt($shortopts, $longopts);
-
     }
 
-    private function isNeedHelp(array $options): bool
+    public function isNeedHelp(array $options): bool
 
     {
 
@@ -109,10 +104,9 @@ class SaveEventCommand extends Command
             isset($options['help']) ||
 
             isset($options['h']);
-
     }
 
-    private function showHelp()
+    public function showHelp()
 
     {
 
@@ -128,13 +122,12 @@ class SaveEventCommand extends Command
 
 	--receiver Идентификатор получателя сообщения
 
-	Для справки используйте флаги -h или --help
+	СПРАВКА: используйте флаги -h или --help
 
 ";
-
     }
 
-    private function getCronValues(string $cronString): array
+    public function getCronValues(string $cronString): array
 
     {
 
@@ -143,11 +136,9 @@ class SaveEventCommand extends Command
         $cronValues = array_map(function ($item) {
 
             return $item === "*" ? null : $item;
-
         }, $cronValues);
 
         return $cronValues;
-
     }
 
     private function saveEvent(array $params): void
@@ -163,7 +154,5 @@ class SaveEventCommand extends Command
             array_values($params)
 
         );
-
     }
-
 }

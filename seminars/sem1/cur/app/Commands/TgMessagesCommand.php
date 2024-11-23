@@ -87,7 +87,7 @@ class TgMessagesCommand extends Command
         return 'Я записал Ваше событие. Для нового события введите /start .';
     }
 
-    private function getCronValues(string $cronString): array
+    public function getCronValues(string $cronString): array
     {
         $cronValues = explode(" ", $cronString);
 
