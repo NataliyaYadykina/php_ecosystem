@@ -6,8 +6,12 @@ class TelegramApiImpl implements TelegramApi
 {
     const ENDPOINT = 'https://api.telegram.org/bot';
     private int $offset;
+    private string $token;
 
-    public function __construct(private string $token) {}
+    public function __construct(string $token)
+    {
+        $this->token = $token;
+    }
 
     public function getMessages(int $offset): array
     {

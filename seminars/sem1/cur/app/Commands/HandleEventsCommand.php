@@ -38,7 +38,7 @@ class HandleEventsCommand extends Command
 
             if ($this->shouldEventBeRan($event)) {
 
-                $eventSender->sendMessage($event->receiverId, $event->text);
+                $eventSender->sendMessage($event['receiver_id'], $event['text']);
             }
         }
     }
@@ -56,14 +56,18 @@ class HandleEventsCommand extends Command
 
         $currentWeekday = date("w");
 
-        return ($event['minute'] === $currentMinute &&
+        // var_dump($currentMinute, $currentHour, $currentDay, $currentMonth, $currentWeekday);
 
-            $event['hour'] === $currentHour &&
+        // return true;
 
-            $event['day'] === $currentDay &&
+        return ((int)$event['minute'] === (int)$currentMinute &&
 
-            $event['month'] === $currentMonth &&
+            (int)$event['hour'] === (int)$currentHour &&
 
-            $event['weekDay'] === $currentWeekday);
+            (int)$event['day'] === (int)$currentDay &&
+
+            (int)$event['month'] === (int)$currentMonth &&
+
+            (int)$event['day_of_week'] === (int)$currentWeekday);
     }
 }

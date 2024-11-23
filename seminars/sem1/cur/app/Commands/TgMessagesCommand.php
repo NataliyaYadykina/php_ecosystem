@@ -10,9 +10,13 @@ use App\Telegram\TelegramApiImpl;
 
 class TgMessagesCommand extends Command
 {
-    public function __construct(public Application $app) {}
+    protected Application $app;
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
 
-    public function run(): void
+    public function run(array $options = []): void
     {
         $tgApi = new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN'));
         $eventSender = new EventSender(new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN')));

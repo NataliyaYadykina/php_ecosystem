@@ -6,7 +6,12 @@ use App\Telegram\TelegramApi;
 
 class EventSender
 {
-    public function __construct(private TelegramApi $telegram) {}
+    private TelegramApi $telegram;
+
+    public function __construct(TelegramApi $telegram)
+    {
+        $this->telegram = $telegram;
+    }
 
     public function sendMessage(string $receiver, string $message)
     {
