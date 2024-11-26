@@ -4,6 +4,9 @@ use PHPUnit\Framework\TestCase;
 // use PHPUnit\Framework\Attributes\DataProvider;
 // use PHPUnit\Framework\Attributes\TestWith;
 
+/**
+ * @covers SaveEventCommand
+ */
 class SaveEventCommandTest extends TestCase
 {
     public function testRunWithoutParamsEchoHelp(): void

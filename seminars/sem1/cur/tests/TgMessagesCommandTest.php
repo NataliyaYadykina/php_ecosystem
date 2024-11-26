@@ -3,6 +3,9 @@
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\DataProvider;
 
+/**
+ * @covers TgMessagesCommand
+ */
 class TgMessagesCommandTest extends TestCase
 {
     // #[DataProvider('cronValuesDataProvider')]
