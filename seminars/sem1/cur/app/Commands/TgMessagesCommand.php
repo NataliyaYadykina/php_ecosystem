@@ -8,6 +8,7 @@ use Predis\Client;
 use App\Database\SQLite;
 use App\EventSender\EventSender;
 use App\Models\Event;
+use App\Queue\RabbitMQ;
 use App\Telegram\TelegramApiImpl;
 use Predis\Connection\Cluster\PredisCluster;
 
@@ -36,7 +37,8 @@ class TgMessagesCommand extends Command
     {
         $tgApi = new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN'));
         echo json_encode($this->receiveNewMessages());
-        $eventSender = new EventSender(new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN')));
+        $queue = new RabbitMQ('eventSender');
+        $eventSender = new EventSender(new TelegramApiImpl($this->app->env('TELEGRAM_TOKEN')), $queue);
         $oldMessages = [];
         $offset = 0;
         while (true) {
